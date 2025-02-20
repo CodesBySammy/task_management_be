@@ -12,7 +12,18 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+// ✅ Updated CORS Configuration
+const corsOptions = {
+    origin: "https://task-management-livid-seven.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+};
+app.use(cors(corsOptions));
+
+// ✅ Handle Preflight Requests
+app.options('*', cors(corsOptions));
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
