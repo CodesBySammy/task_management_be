@@ -13,21 +13,14 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const app = express();
 app.use(express.json());
 
-const allowedOrigins = [
-    "https://task-management-livid-seven.vercel.app"
-];
+const cors = require("cors");
 
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: "https://task-management-livid-seven.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
