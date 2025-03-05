@@ -15,11 +15,11 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/manifest.json', (req, res) => {
+app.get('./public/manifest.json', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'manifest.json'));
 });
 
-app.get('/service-worker.js', (req, res) => {
+app.get('./public/service-worker.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'service-worker.js'));
 });
 
