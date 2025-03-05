@@ -13,6 +13,17 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const app = express();
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/manifest.json', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'manifest.json'));
+});
+
+app.get('/service-worker.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'service-worker.js'));
+});
+
+
 // ✅ Updated CORS Configuration
 app.use(cors({
     origin: '*'
